@@ -1,3 +1,6 @@
+
+# O(n) Time / O(1) Space
+
 def dutch_national_flag_algorithm(arr):
     low, mid, high = 0, 0, len(arr) - 1
 
