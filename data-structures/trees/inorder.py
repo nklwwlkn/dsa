@@ -31,7 +31,9 @@ root.right = node3
 node2.left = node4
 node2.right = node5
 
-
+# Complexity analysis:
+# Time complexity: O(n), where n is the number of nodes in the tree
+# Space complexity: O(h), where h is the height of the tree
 class Implementation:
     def inorder_traversal_recursive(self, root: Optional[TreeNode]) -> List[int]:
         inoder = []
@@ -49,8 +51,8 @@ class Implementation:
         return inoder
     
     def inorder_traversal_iterative(self, root: Optional[TreeNode]) -> List[int]:
-        inorder = []
         stack = []
+        inorder = []
 
         while True:
             if root:
@@ -65,21 +67,20 @@ class Implementation:
                 root = root.right
         
         return inorder
-        
-    
 
 implementation = Implementation()
 
 recursive_result = implementation.inorder_traversal_recursive(root)
 iterative_result = implementation.inorder_traversal_iterative(root)
 
-assert recursive_result == [4, 2, 5, 1, 3]
-assert iterative_result == [4, 2, 5, 1, 3]
+EXPTECTED_RESULT = [4, 2, 5, 1, 3]
+
+assert recursive_result == EXPTECTED_RESULT
+assert iterative_result == EXPTECTED_RESULT
+
+print("Recursive inorder traversal: ", recursive_result)
+print("Iterative inorder traversal: ", iterative_result)
     
-if __name__ == "__main__":
-    print("Recursive inorder traversal: ", recursive_result)
-    print("Iterative inorder traversal: ", iterative_result)
-    
-    print("Useful problems to solve:")
-    for problem in useful_problems_to_solve:
-        print(problem)
+print("Useful problems to solve:")
+for problem in useful_problems_to_solve:
+    print(problem)

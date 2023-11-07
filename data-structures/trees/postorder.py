@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 useful_problems_to_solve = [
-    "https://leetcode.com/problems/binary-tree-preorder-traversal",
+    "https://leetcode.com/problems/binary-tree-postorder-traversal",
 ]
 
 # Definition for a binary tree node:
@@ -35,54 +35,51 @@ node2.right = node5
 # Time complexity: O(n), where n is the number of nodes in the tree
 # Space complexity: O(h), where h is the height of the tree
 class Implementation:
-    def preorder_traversal_recursive(self, root: Optional[TreeNode]) -> List[int]:
-        preoder = []
+    def postorder_traversal_recursive(self, root: Optional[TreeNode]) -> List[int]:
+        postorder = []
 
         def dfs(root):
             if not root:
                 return
-            
-            preoder.append(root.val)
 
             dfs(root.left)
             dfs(root.right)
+            postorder.append(root.val)
         
         dfs(root)
 
-        return preoder
+        return postorder
     
-    def preorder_traversal_iterative(self, root: Optional[TreeNode]) -> List[int]:
+    def postorder_traversal_iterative(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        
+
         stack = [root]
-        preorder = []
+        postorder = []
 
         while stack:
             node = stack.pop()
-            
-            if node:
-                preorder.append(node.val)
-                if node.right:
-                    stack.append(node.right)
-                if node.left:
-                    stack.append(node.left)
+            postorder.append(node.val)
+
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
         
-        return preorder
-    
+        return postorder[::-1]
 
 implementation = Implementation()
 
-recursive_result = implementation.preorder_traversal_recursive(root)
-iterative_result = implementation.preorder_traversal_iterative(root)
+recursive_result = implementation.postorder_traversal_recursive(root)
+iterative_result = implementation.postorder_traversal_iterative(root)
 
-EXPECTED_RESULT = [1, 2, 4, 5, 3]
+EXPECTED_RESULT = [4, 5, 2, 3, 1]
 
 assert recursive_result == EXPECTED_RESULT
 assert iterative_result == EXPECTED_RESULT
-    
-print("Recursive preorder traversal: ", recursive_result)
-print("Iterative preorder traversal: ", iterative_result)
+
+print("Recursive postorder traversal: ", recursive_result)
+print("Iterative postorder traversal", iterative_result)
     
 print("Useful problems to solve:")
 for problem in useful_problems_to_solve:
